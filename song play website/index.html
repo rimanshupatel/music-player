@@ -1,0 +1,103 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo website</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav flex">
+        <div class="nav-logo">
+          <img src="song-collection/logo.png" style="width: 7rem" />
+        </div>
+        <ul class="nav-links flex">
+          <li>
+            <a href="#">home</a>
+          </li>
+          <li>
+            <a href="#">about us</a>
+          </li>
+          <li>
+            <a href="#">specification</a>
+          </li>
+          <li>
+            <a href="#">product</a>
+          </li>
+          <li>
+            <a href="#">connect</a>
+          </li>
+        </ul>
+      </div>
+      <div class="main-content flex">
+        <div class="left-content">
+          <h1>the<br />real<br />sound</h1>
+        </div>
+        <div class="right-content">
+          <div class="music-player">
+            <audio
+              controls
+              src="song-collection/alan-walker_2.mp3"
+              type="audio/mpeg"
+              id="song"
+              style="display: none"
+            ></audio>
+            <div class="music-skip">
+              <input type="range" value="0" id="progress" />
+            </div>
+            <div class="music-controller flex">
+              <button class="media-button music-btn" id="suffle">
+                <i class="fa-solid fa-shuffle"></i>
+              </button>
+              <button class="media-button" id="backward">
+                <i class="fa fa-backward button-icons music-btn-bg"></i>
+                <span>rewind</span>
+              </button>
+              <button class="media-button" id="ctrlicon" onclick="playpause()">
+                <i class="fa fa-pause button-icons play-button mb-0"></i>
+                <span>play</span>
+              </button>
+              <button class="media-button" id="forward">
+                <i class="fa fa-forward button-icons music-btn-bg"></i>
+                <span>forward</span>
+              </button>
+              <button class="media-button music-btn" id="repeat">
+                <i class="fa-solid fa-repeat"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/e671a88325.js"></script>
+    <script>
+      let ctrlicon = document.querySelector("#ctrlicon i");
+      let backward = document.getElementById("backward");
+      let forward = document.getElementById("forward");
+      let song = document.getElementById("song");
+
+      song.onloadedmetadata = function () {
+        progress.max = song.duration;
+        progress.value = song.currenttime;
+      };
+      function playpause() {
+        const isPaused = song.paused;
+        if (isPaused) {
+          song.play();
+          ctrlicon.classList.add("fa-pause");
+          ctrlicon.classList.remove("fa-play");
+        } else {
+          song.pause();
+          ctrlicon.classList.remove("fa-pause");
+          ctrlicon.classList.add("fa-play");
+        }
+        // if (song.paused) {
+        //   song.play();
+        // } else {
+        //   song.pause();
+        // }
+      }
+    </script>
+  </body>
+</html>
